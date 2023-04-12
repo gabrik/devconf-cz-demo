@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  zenoh-router:
+    build: .
+    ports:
+      - 7447:7447/tcp
+      - 7447:7447/udp
+      - 8080:8000
+
