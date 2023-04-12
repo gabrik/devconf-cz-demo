@@ -14,7 +14,7 @@ Here a step by step guide on reproducing the demo.
 
 The edge device is where data processing and decision making is made.
 It can be your own RPi or a machine in the Local Network.
-As it is an Edge device it shuld be closer to the sensor
+As it is an Edge device it should be closer to the sensor
 
 ### Start a Zenoh router
 
