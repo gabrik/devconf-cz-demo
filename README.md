@@ -10,12 +10,11 @@ In this demo you will see Zenoh and Zenoh-Flow interacting with 3rd party techno
 ## How to run the demo.
 
 Here a step by step guide on reproducing the demo.
-## Microcontroller
+## Edge Device
 
-For the microcontroller part an Espressif ESP32 + Adafruit Ultrasonic Range sensors are needed.
-
-Connect the Ultrasonic sensor SIG pin with the Espressif ESP32 pin 17.
-Connect the Ultrasonic VCC and GND to 5V and GND on the  Espressif ESP32.
+The edge device is where data processing and decision making is made.
+It can be your own RPi or a machine in the Local Network.
+As it is an Edge device it shuld be closer to the sensor
 
 ### Start a Zenoh router
 
@@ -25,6 +24,26 @@ Go to the `zenohd` directoy and start the `docker-compose.yml`
 cd zenohd
 docker compose up -d
 ```
+
+### Start the data processing
+
+Go to the `data-processing` directoy and start the `docker-compose.yml`
+
+```bash
+cd data-processing
+docker compose up -d
+```
+
+---
+
+## Microcontroller
+
+For the microcontroller part an Espressif ESP32 + Adafruit Ultrasonic Range sensors are needed.
+
+Connect the Ultrasonic sensor SIG pin with the Espressif ESP32 pin 17.
+Connect the Ultrasonic VCC and GND to 5V and GND on the  Espressif ESP32.
+
+
 
 ### Create the Zenoh-Pico sensor
 
@@ -49,11 +68,12 @@ Once the flash is done the board will restart and will publish data in `demo/dev
 
 You can see the data being published by running `python3 z_sub_le.py -m client -e tcp/localhost:7447 -k "demo/devconf/ultrasonic"`
 
-### Start the data processing
 
-Go to the `data-processing` directoy and start the `docker-compose.yml`
+## Cloud
 
-```bash
-cd data-processing
-docker compose up -d
-```
+The cloud is where the data is being stored.
+In can be your PC, or a more powerfull machine available over the internet.
+
+## Start Zenohd with Influx DB backend
+
+TBD.
