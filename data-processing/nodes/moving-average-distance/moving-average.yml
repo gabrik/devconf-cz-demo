@@ -1,0 +1,7 @@
+id: moving-average
+vars:
+ BASE_DIR: "/var/zenoh-flow"
+uri: "file://{{BASE_DIR }}/nodes/moving-average-distance/moving-average.py"
+
+inputs: [distance]
+outputs: [distance]

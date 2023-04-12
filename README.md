@@ -49,3 +49,11 @@ Once the flash is done the board will restart and will publish data in `demo/dev
 
 You can see the data being published by running `python3 z_sub_le.py -m client -e tcp/localhost:7447 -k "demo/devconf/ultrasonic"`
 
+### Start the data processing
+
+Go to the `data-processing` directoy and start the `docker-compose.yml`
+
+```bash
+cd data-processing
+docker compose up -d
+```

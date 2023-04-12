@@ -1,0 +1,52 @@
+flow: ButtonCommand
+vars:
+ BASE_DIR: "/var/zenoh-flow"
+configuration:
+      subscriber: "zigbee2mqtt/device/button"
+      publisher: "bot1/rt/cmd_vel"
+
+operators:
+  - id : MovingAverage
+    descriptor: "file://{{ BASE_DIR }}/nodes/moving-average-distance/moving-average.yml"
+
+  - id : Proximity
+    configuration:
+      max_range: 100
+      min_range: 10
+    descriptor: "file://{{ BASE_DIR }}/nodes/compute-proximity/compute-proximity.yml"
+
+sources:
+  - id : ZenohSrc
+    configuration:
+      key-expressions:
+        distance: demo/devconf/ultrasonic
+    descriptor: "builtin://zenoh"
+
+sinks:
+  - id : ZenohSink
+    configuration:
+      key-expressions:
+        light: zigbee2mqtt/device/bulb/set
+    descriptor: "builtin://zenoh"
+
+links:
+- from:
+    node : ZenohSrc
+    output : distance
+  to:
+    node : MovingAverage
+    input : distance
+
+- from:
+    node : MovingAverage
+    output : distance
+  to:
+    node : Proximity
+    input : distance
+
+- from:
+    node : Proximity
+    output : light
+  to:
+    node : ZenohSink
+    input : light

@@ -1,0 +1,12 @@
+id: compute-proximity
+vars:
+ BASE_DIR: "/var/zenoh-flow"
+uri: "file://{{BASE_DIR }}/nodes/compute-proximity/compute-proximity.py"
+
+configuration:
+  max_range: 1.0
+  min_range: 0.1
+  number_of_proximity_levels: 4
+
+inputs: [distance]
+outputs: [light]

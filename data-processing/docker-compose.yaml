@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  data-processing:
+    build: .
+    volumes:
+      - ./etc:/etc/zenoh-flow
+      - ./nodes:/var/zenoh-flow/nodes
+      - ./flows:/var/zenoh-flow/flows
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+
