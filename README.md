@@ -47,5 +47,5 @@ then build and flash the board with `pio run -t upload`.
 
 Once the flash is done the board will restart and will publish data in `demo/devconf/ultrasonic`.
 
-You can see the data being published by running `python3 -m client -e tcp/localhost:7447 z_sub_le.py -k "demo/devconf/ultrasonic"`
+You can see the data being published by running `python3 z_sub_le.py -m client -e tcp/localhost:7447 -k "demo/devconf/ultrasonic"`
 
