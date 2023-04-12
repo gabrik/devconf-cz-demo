@@ -74,4 +74,4 @@ RUN bash -c "pip3 install /root/*.whl"
 
 RUN  DEBIAN_FRONTEND=noninteractive apt clean && apt autoclean
 
-CMD "runtime -z /etc/zenoh-flow/zenoh-runtime.json -l /etc/zenoh-flow/py-loader.yaml -r processing -g /var/zenoh-flow/flows/distance-alert.yml"
+CMD bash -c "runtime -z /etc/zenoh-flow/zenoh-runtime.json -l /etc/zenoh-flow/py-loader.yaml -r processing -g /var/zenoh-flow/flows/distance-alert.yml"
