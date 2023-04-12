@@ -1,9 +1,6 @@
 flow: ButtonCommand
 vars:
  BASE_DIR: "/var/zenoh-flow"
-configuration:
-      subscriber: "zigbee2mqtt/device/button"
-      publisher: "bot1/rt/cmd_vel"
 
 operators:
   - id : MovingAverage
