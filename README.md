@@ -41,8 +41,9 @@ pio lib install seeed-studio/Grove\ Ultrasonic\ Ranger
 
 Then create the `main.ino` file: `touch src/main.ino`.
 
-Copy the content from `sensor/src/main.ino` into your `src/main.ino` then build
-and flash the board with `pio run -t upload`.
+Copy the content from `sensor/src/main.ino` into your `src/main.ino`,
+update the `SSID`, `PASS` and `PEER` constant to match your environment,
+then build and flash the board with `pio run -t upload`.
 
 Once the flash is done the board will restart and will publish data in `demo/devconf/ultrasonic`.
 
