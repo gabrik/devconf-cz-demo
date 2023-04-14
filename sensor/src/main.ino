@@ -11,12 +11,12 @@ extern "C" {
 #define SENSOR 17
 
 // WiFi config
-#define SSID "SSID"
-#define PASS "PASS"
+#define SSID "ZenohDemos"
+#define PASS "zenohdemos"
 
 // Zenoh config
 #define MODE "client"
-#define PEER "" // Empty means it will scout
+#define PEER "udp/192.168.123.198:7447" // Empty means it will scout
 #define KEYEXPR "demo/devconf/ultrasonic"
 
 Ultrasonic ultrasonic(SENSOR);
