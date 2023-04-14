@@ -3,6 +3,8 @@ version: "3"
 services:
   zenoh-router:
     build: .
+    volumes:
+      - ./config.json5:/config.json5
     ports:
       - 7447:7447/tcp
       - 7447:7447/udp
