@@ -18,6 +18,7 @@ from zenoh_flow import Input, Output
 from zenoh_flow.types import Context
 from typing import Dict, Any
 import struct
+import logging
 
 MAX_BUFFER_SIZE = 5
 
@@ -30,7 +31,8 @@ class ComputeMovingAverage(Operator):
         inputs: Dict[str, Input],
         outputs: Dict[str, Output],
     ):
-
+        logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.DEBUG)
+        
         self.output = outputs.take_raw("distance")
         self.in_stream = inputs.take_raw("distance")
 
@@ -50,14 +52,14 @@ class ComputeMovingAverage(Operator):
         # this gets the moving average distance from the sensor
         current_value = deserialize_long(data_msg.data)
 
-        print(f'Current value {current_value}')
+        logging.debug(f'Current value {current_value}')
         if len(self.buffer) >= MAX_BUFFER_SIZE:
             print(f"buffer is full, removing {self.buffer.pop(0)} ")
 
         self.buffer.append(current_value)
 
         average = sum(self.buffer) / len(self.buffer)
-        print(f'Moving average {average}')
+        logging.debug(f'Moving average {average}')
 
         await self.output.send(serialize_float(average))
         return None

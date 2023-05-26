@@ -16,6 +16,7 @@
 from zenoh_flow.interfaces import Operator
 from zenoh_flow import Input, Output
 from zenoh_flow.types import Context
+import logging
 from typing import Dict, Any
 import struct
 import json
@@ -33,7 +34,7 @@ class ComputeProximity(Operator):
         inputs: Dict[str, Input],
         outputs: Dict[str, Output],
     ):
-
+        logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.DEBUG)
         self.output = outputs.take_raw("light")
         self.in_stream = inputs.take_raw("distance")
 
@@ -59,20 +60,20 @@ class ComputeProximity(Operator):
 
         # deserialize distance
         distance = deserialize_float(data_msg.data)
-        print(f'Avg distance in cm {distance}')
+        logging.debug(f'Avg distance in cm {distance}')
         # compute proximity level
 
         prox_level = round((self.max_range - distance) * self.nb_proximity_level / (self.max_range - self.min_range))
         prox_level = max(min(prox_level, self.nb_proximity_level), 0)
         # if proximity level changed:
-        print(f'Distance {distance} Proximity Level {prox_level}')
+        logging.debug(f'Distance {distance} Proximity Level {prox_level}')
         if (prox_level != self.last_prox_level):
             # compute brightness and color depending the proximity level
             brightness = 15 + (prox_level * 240) / self.nb_proximity_level
             red = round(255 * prox_level / self.nb_proximity_level)
             green = round(255 * (1 - (prox_level / self.nb_proximity_level)))
             blue = 0
-            print(f"min_dist={distance} => proximity_level={prox_level} => publish brightness={brightness},RGB=({red},{green},{blue}) to light ")
+            logging.debug(f"min_dist={distance} => proximity_level={prox_level} => publish brightness={brightness},RGB=({red},{green},{blue}) to light ")
             # publish over zenoh the JSON message setting the lightbulb brightness and color
             # (see supported JSON attributes in https://www.zigbee2mqtt.io/devices/33943_33944_33946.html)
             ctrl_data = {'brightness': brightness, 'color': {'r': red, 'g': green, 'b': blue}}
