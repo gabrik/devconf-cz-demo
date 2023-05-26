@@ -9,7 +9,7 @@ RUN apt update && apt install git python3-venv python3-pip equivs musl-tools bui
 RUN curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain 1.66.0 -y
 
 # clone zenoh-flow runtime and zenoh-flow-python repos
-RUN git clone https://github.com/gabrik/zenoh-flow-runtime /root/zenoh-flow-runtime
+RUN git clone https://github.com/gabrik/zenoh-flow-runtime -b dev-demo /root/zenoh-flow-runtime
 RUN git clone https://github.com/eclipse-zenoh/zenoh-flow-python /root/zenoh-flow-python
 
 #-b feat-typed-inputs-outputs

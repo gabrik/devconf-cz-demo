@@ -16,7 +16,7 @@ extern "C" {
 
 // Zenoh config
 #define MODE "client"
-#define PEER "udp/192.168.123.198:7447" // Empty means it will scout
+#define PEER "tcp/192.168.123.198:7447" // Empty means it will scout
 #define KEYEXPR "demo/devconf/ultrasonic"
 
 Ultrasonic ultrasonic(SENSOR);

@@ -3,7 +3,7 @@
         "endpoints":["tcp/0.0.0.0:7447","udp/0.0.0.0:7447"]
     },
     "connect":{
-        "endpoints":["tcp/192.168.86.22:7448"]
+        "endpoints":["tcp/demo.zenoh.io:7447"]
     },
     "plugins_search_dirs":["/usr/lib/"],
     "plugins":{

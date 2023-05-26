@@ -18,6 +18,9 @@ As it is an Edge device it should be closer to the sensor
 
 ### Start a Zenoh router
 
+Connect to the RaspberryPi: `ssh pi@mqtt.local` 
+ 
+
 Go to the `zenohd` directoy and start the `docker-compose.yml`
 
 ```bash
@@ -43,6 +46,14 @@ For the microcontroller part an Espressif ESP32 + Adafruit Ultrasonic Range sens
 Connect the Ultrasonic sensor SIG pin with the Espressif ESP32 pin 17.
 Connect the Ultrasonic VCC and GND to 5V and GND on the  Espressif ESP32.
 
+Run the code in the example:
+
+```
+source ~/.platformio/penv/bin/activate
+cd sensor
+platformio run -t upload
+platformio device monitor -b 115200
+```
 
 
 ### Create the Zenoh-Pico sensor

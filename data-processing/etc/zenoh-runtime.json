@@ -1,6 +1,6 @@
 {
     "connect":{
-        "endpoints":["tcp/host.docker.internal:7447"]
+        "endpoints":["tcp/192.168.123.198:7447"]
     },
     "mode":"client",
 }

@@ -34,8 +34,8 @@ class ComputeProximity(Operator):
         outputs: Dict[str, Output],
     ):
 
-        self.output = outputs.get("light", None)
-        self.in_stream = inputs.get("distance", None)
+        self.output = outputs.take_raw("light")
+        self.in_stream = inputs.take_raw("distance")
 
         if self.in_stream is None:
             raise ValueError("No input 'distance' found")
